@@ -33,7 +33,7 @@ clipboardIconSvg.appendChild(clipboardIconPath);
 
 var interval = setInterval(function() {
     let prNumber = document.querySelectorAll('.gh-header-number')[0];
-    if (typeof prNumber === 'undefined') {
+    if (typeof prNumber === 'undefined' || prNumber.classList.contains('clipboardAdded')) {
         //console.log('No pr number found.');
         return;
     }
@@ -60,6 +60,8 @@ var interval = setInterval(function() {
         console.log('navigator.clipboard.writeText is not available');
         return;
     }
+
+    prNumber.classList.add('clipboardAdded');
 
     prNumber.parentNode.insertBefore(clipboardIconSvg, prNumber.nextSibling);
 
