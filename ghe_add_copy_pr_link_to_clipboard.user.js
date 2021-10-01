@@ -6,7 +6,7 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.3.4
+// @version     1.4.0
 // @updateURL   https://raw.githubusercontent.com/saiori/userscripts/master/ghe_add_copy_pr_link_to_clipboard.js
 // @downloadURL https://raw.githubusercontent.com/saiori/userscripts/master/ghe_add_copy_pr_link_to_clipboard.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
