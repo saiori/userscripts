@@ -6,9 +6,9 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.4.0
-// @updateURL   https://raw.githubusercontent.com/saiori/userscripts/master/ghe_add_copy_pr_link_to_clipboard.js
-// @downloadURL https://raw.githubusercontent.com/saiori/userscripts/master/ghe_add_copy_pr_link_to_clipboard.js
+// @version     1.4.1
+// @updateURL   https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
+// @downloadURL https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // ==/UserScript==
 
