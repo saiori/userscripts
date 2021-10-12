@@ -6,7 +6,7 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.4.1
+// @version     1.5.0
 // @updateURL   https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @downloadURL https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -22,6 +22,7 @@ clipboardIconSvg.setAttribute('viewbox', '0 0 16 16');
 clipboardIconSvg.setAttribute('width', '16px');
 clipboardIconSvg.setAttribute('height', '16px');
 clipboardIconSvg.setAttribute('version', '1.1');
+clipboardIconSvg.classNames = 'octicon octicon-clippy d-inline-block mx-1 js-clipboard-clippy-icon';
 clipboardIconSvg.style.cursor = 'pointer';
 clipboardIconSvg.style.margin = '4px 4px';
 
