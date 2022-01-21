@@ -6,10 +6,10 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.5.0
+// @version     1.6.14
 // @updateURL   https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @downloadURL https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
-// @require     https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
+// @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
 // ==/UserScript==
 
 
@@ -31,46 +31,60 @@ clipboardIconPath.setAttribute('fill-rule', 'evenodd');
 
 clipboardIconSvg.appendChild(clipboardIconPath);
 
+var copyPrToClipboard = function(link) {
+    navigator.clipboard.writeText(link);
+};
 
 var interval = setInterval(function() {
-    let prNumber = document.querySelectorAll('.gh-header-number')[0];
-    if (typeof prNumber === 'undefined' || prNumber.classList.contains('clipboardAdded')) {
-        //console.log('No pr number found.');
+    
+    let $prNumberScrolled = $('.gh-header-number');    
+    let $prNumberNotScrolled = $('.gh-header-title span:last-child');
+    
+    if ($prNumberScrolled.length === 0 || $prNumberScrolled.hasClass('clipboard-added')) {
+        //console.log('No pr header found.');
         return;
     }
 
     // The link has already been added.
-    if (typeof prNumber.onclick === 'function') {
+    if (typeof $prNumberScrolled[0].onclick === 'function') {
         //console.log('Link found, no need to do it again.');
         return;
     }
-
-    let clipBoardIcon = document.querySelectorAll('svg.octicon-clippy')[0];
-    let prLink = document.querySelectorAll('.tabnav-tabs a:last-child')[0];
-    if (typeof prLink === 'undefined') {
+        
+    let $prLink = $('.tabnav-tabs a:last-child')
+    if ($prLink.length === 0) {
         ///console.log('No link found').
         return;
     }
-
-    let linkUrl = new URL(prLink.href);
-    let link = linkUrl.origin + linkUrl.pathname;
-
-    prNumber.style.cursor = 'pointer';
-
+    
     if (typeof navigator.clipboard.writeText !== 'function') {
         console.log('navigator.clipboard.writeText is not available');
         return;
-    }
+    }    
 
-    prNumber.classList.add('clipboardAdded');
+    let linkUrl = new URL($prLink.attr('href'));
+    let link = linkUrl.origin + linkUrl.pathname;
 
-    prNumber.parentNode.insertBefore(clipboardIconSvg, prNumber.nextSibling);
+    let $clipboardIcon = $('svg.octicon-copy').first().clone().addClass('Link--onHover');
+    $clipboardIcon.on('click', function () { copyPrToClipboard(link); })
+        .css('cursor', 'pointer')
+        .css('vertical-align', 'middle');
 
-    prNumber.onclick = function () {
-        navigator.clipboard.writeText(link);
-    };
-
-    clipboardIconSvg.onclick = function () {
-        navigator.clipboard.writeText(link);
-    };
+    let $clipboardScrolled = $clipboardIcon.clone();
+    $clipboardScrolled.css('margin-left', '5px');
+    $clipboardScrolled.on('click', function () { copyPrToClipboard(link); })    
+    
+    $prNumberScrolled.css('cursor', 'pointer');
+    $prNumberNotScrolled.css('cursor', 'pointer');
+    
+    // Insert the copy icon after the PR number.
+    $prNumberScrolled.parent().append($clipboardScrolled);
+    $prNumberNotScrolled.parent().append($clipboardIcon);
+    
+    $prNumberScrolled.addClass('clipboard-added');
+    $prNumberNotScrolled.addClass('clipboard-added')
+        
+    $prNumberScrolled.on('click', function () { copyPrToClipboard(link); });
+    $prNumberNotScrolled.on('click', function () { copyPrToClipboard(link); });
+    
 }, 1500);
