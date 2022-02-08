@@ -6,7 +6,7 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.7.0
+// @version     1.7.1
 // @updateURL   https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @downloadURL https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
@@ -67,7 +67,7 @@ var interval = setInterval(function() {
     }
     catch (e) {
         // Unable to find the URL.  Could be a relative URL.
-        return;
+        clearInterval(interval);
     }
 
     let link = linkUrl.origin + linkUrl.pathname;
