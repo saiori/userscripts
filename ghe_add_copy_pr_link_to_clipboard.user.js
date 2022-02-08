@@ -6,7 +6,7 @@
 // @include     https://github.com/*
 // @include     https://git.osky.io/*
 // @include     https://mail.google.com/*
-// @version     1.6.14
+// @version     1.7.0
 // @updateURL   https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @downloadURL https://github.com/saiori/userscripts/raw/master/ghe_add_copy_pr_link_to_clipboard.user.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js
@@ -36,10 +36,10 @@ var copyPrToClipboard = function(link) {
 };
 
 var interval = setInterval(function() {
-    
-    let $prNumberScrolled = $('.gh-header-number');    
+
+    let $prNumberScrolled = $('.gh-header-number');
     let $prNumberNotScrolled = $('.gh-header-title span:last-child');
-    
+
     if ($prNumberScrolled.length === 0 || $prNumberScrolled.hasClass('clipboard-added')) {
         //console.log('No pr header found.');
         return;
@@ -50,19 +50,26 @@ var interval = setInterval(function() {
         //console.log('Link found, no need to do it again.');
         return;
     }
-        
+
     let $prLink = $('.tabnav-tabs a:last-child')
     if ($prLink.length === 0) {
         ///console.log('No link found').
         return;
     }
-    
+
     if (typeof navigator.clipboard.writeText !== 'function') {
         console.log('navigator.clipboard.writeText is not available');
         return;
-    }    
+    }
 
-    let linkUrl = new URL($prLink.attr('href'));
+    try {
+        let linkUrl = new URL($prLink.attr('href'));
+    }
+    catch (e) {
+        // Unable to find the URL.  Could be a relative URL.
+        return;
+    }
+
     let link = linkUrl.origin + linkUrl.pathname;
 
     let $clipboardIcon = $('svg.octicon-copy').first().clone().addClass('Link--onHover');
@@ -72,19 +79,19 @@ var interval = setInterval(function() {
 
     let $clipboardScrolled = $clipboardIcon.clone();
     $clipboardScrolled.css('margin-left', '5px');
-    $clipboardScrolled.on('click', function () { copyPrToClipboard(link); })    
-    
+    $clipboardScrolled.on('click', function () { copyPrToClipboard(link); });
+
     $prNumberScrolled.css('cursor', 'pointer');
     $prNumberNotScrolled.css('cursor', 'pointer');
-    
+
     // Insert the copy icon after the PR number.
     $prNumberScrolled.parent().append($clipboardScrolled);
     $prNumberNotScrolled.parent().append($clipboardIcon);
-    
+
     $prNumberScrolled.addClass('clipboard-added');
     $prNumberNotScrolled.addClass('clipboard-added')
-        
+
     $prNumberScrolled.on('click', function () { copyPrToClipboard(link); });
     $prNumberNotScrolled.on('click', function () { copyPrToClipboard(link); });
-    
+
 }, 1500);
