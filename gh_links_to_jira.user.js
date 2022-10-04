@@ -3,7 +3,6 @@
 // @namespace   http://github.com/
 // @description Link JIRA issues by patterns. Change variables below to match your issue pattern and JIRA URL
 // @include     https://github.com/*
-// @include     https://git.opensky.com/*
 // @version     1.1
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // ==/UserScript==
