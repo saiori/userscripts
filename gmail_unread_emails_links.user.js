@@ -5,6 +5,8 @@
 // @description Add permanent links to unread email messages in GMail
 // @match       https://mail.google.com/*
 // @version     1.0
+// @updateURL   https://github.com/saiori/userscripts/raw/master/gmail_unread_emails_links.user.js
+// @downloadURL https://github.com/saiori/userscripts/raw/master/gmail_unread_emails_links.user.js
 // @require     https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js
 // ==/UserScript==
 
