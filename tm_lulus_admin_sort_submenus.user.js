@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Reorder Admin Menus
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.3
 // @description  Why weren't they sorted alphabetically in the first place.
 // @author       Jacob Mack
 // @match        https://*.lulus.com/admin/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=lulus.com
-// @updateURL   https://gist.github.com/saiori/189035cb404770b8cdacaf9a4f796628/raw/tm_lulus_admin_sort_submenus.user.js
-// @downloadURL https://gist.github.com/saiori/189035cb404770b8cdacaf9a4f796628/raw/tm_lulus_admin_sort_submenus.user.js
+// @updateURL    https://github.com/saiori/userscripts/raw/master/tm_lulus_admin_sort_submenus.user.js
+// @downloadURL  https://github.com/saiori/userscripts/raw/master/tm_lulus_admin_sort_submenus.user.js
 // @grant        none
 // ==/UserScript==
 
