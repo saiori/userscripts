@@ -4,6 +4,7 @@
 // @version      2024-07-16
 // @description  try to take over the world!
 // @author       You
+// @download     https://github.com/saiori/userscripts/raw/master/css/lulus/gmailCss.user.js
 // @match        https://mail.google.com/mail/u/0/
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
 // @grant        GM_addStyle
