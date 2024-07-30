@@ -4,6 +4,8 @@
 // @version      2024-02-13
 // @description  try to take over the world!
 // @author       @saiori
+// @updateURL    https://github.com/saiori/userscripts/blob/master/biggantt_quicklink_reorder.user.js
+// @downloadURL  https://github.com/saiori/userscripts/blob/master/biggantt_quicklink_reorder.user.js
 // @match        https://cloud.softwareplant.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=atlassian.net
 // @grant        GM_addStyle
