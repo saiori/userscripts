@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Re-Arrange Quick Filter Links on the Gantt
+// @name         Jira - Move Status Dropdown to Sticky Nav
 // @namespace    http://tampermonkey.net/
-// @version      0.0.1
-// @description  try to take over the world!
+// @version      0.0.2
+// @description  Move the status dropdown menu from below the Summary field to the sticky nav bar at the top of the jira issue. 
 // @author       @saiori
 // @updateURL    https://github.com/saiori/userscripts/blob/master/jira_move_status_dropdown.user.js
 // @downloadURL  https://github.com/saiori/userscripts/blob/master/jira_move_status_dropdown.user.js
@@ -46,15 +46,15 @@ function setDeceleratingTimeout(callback, milliseconds, factor, maximum)
 function moveStatusDropdown() {
     const statusSelectorDataId = 'ref-spotlight-target-status-and-approval-spotlight';
     let statusSelector = document.querySelector('[data-testid="' + statusSelectorDataId + '"]');
-    
+
     const headerSelectorDataId = 'issue-view-sticky-header-container.sticky-header';
     let headerSelector = document.querySelector('[data-testid="' + headerSelectorDataId + '"] nav');
-    
-    
+
+
     if (typeof statusSelector === 'null' || typeof headerrSelector === 'null') {
         return;
     }
-    
+
     headerSelector.appendChild(statusSelector);
 }
 
@@ -62,4 +62,3 @@ function moveStatusDropdown() {
 setDeceleratingTimeout(function() {
     reorderQuickFilterButtons()
 }, 8000, .7);
-
