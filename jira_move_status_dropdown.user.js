@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira - Move Status Dropdown to Sticky Nav
 // @namespace    http://tampermonkey.net/
-// @version      0.0.3
+// @version      0.0.4
 // @description  Move the status dropdown menu from below the Summary field to the sticky nav bar at the top of the jira issue.
 // @author       @saiori
 // @updateURL    https://github.com/saiori/userscripts/blob/master/jira_move_status_dropdown.user.js
@@ -61,4 +61,4 @@ function moveStatusDropdown() {
 
 setDeceleratingTimeout(function() {
     moveStatusDropdown();
-}, 8000, .7);
+}, 2000, .7);
